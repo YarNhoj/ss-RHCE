@@ -45,7 +45,9 @@ This will ultimately be a vagrant setup for SS to study for the RHCE
 - OP perl
 - Aurg perl
 - OP python
-Code
+
+<!-- -->
+
 	vim /root/script.sh
 	#!/bin/bash
 	if [ $# -ne 1 ]; then
@@ -66,7 +68,9 @@ Code
 - anon enabled
 - users can download
 - access allowed from example.com and denied from bad.com
-Code
+
+<!-- -->
+
 	yum -y install vsftpd*
 	vi /etc/vsftpd/vsftpd.conf  (Verify for anonymous access/tcp wrappers)                  
 	anonymous_enable=yes
@@ -83,7 +87,9 @@ Code
 
 #Set up an FTP server such that
 - /common is exported and only accessible by example.com
-Code
+
+<!-- -->
+
 	yum -y install nfs*
 	vi /etc/exports
 	/common *.example.com(rw,sync)
@@ -113,7 +119,9 @@ Code
 - Rename this as index.html
 - Move it to the standard document root of apache
 - Pre-res is provided by DNS
-Code
+
+<!-- -->
+
 	yum -y install httpd*
 	vi /etc/httpd/conf/httpd.conf
 	ServerName stationx.example.com
@@ -137,7 +145,9 @@ Code
 - Doc Root should be in /var/www/virtual
 - copy from dir server1/pub/www.html as index.html
 - Harry should be able to write contents to /var/www/virtual
-Code
+
+<!-- -->
+
 	mkdir /var/www/virtual
 	gftp www.html
 	mv www.html /var/www/virtual/index.html
@@ -160,7 +170,9 @@ Code
 #Import an ISCSI disk from the server server1.example.com such that
 - the disk must be mounte as /mnt/iscsi
 - this mount should be persistent	
-Code
+
+<!-- -->
+
 	rpm -qa | grep iscsi
 	yum install isci-initiator-utils
 	iscsiadm -m discovery -t st -p server1.example.com
@@ -178,7 +190,9 @@ Code
 - workgroup should be set to STAFF
 - The share /common should be accessible and browseable only from .example.com
 - password for harry is "password"
-Code
+
+<!-- -->
+
 	yum -y install samba*
 	vi /etc/samba/smb.conf
 	workgroup = STAFF
