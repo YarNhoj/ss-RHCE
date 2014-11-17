@@ -23,7 +23,7 @@ This will ultimately be a vagrant setup for SS to study for the RHCE
 - Natasha's mail should be spooled to /var/spool/mail/natasha
 - The server should accept mail remotely
 - All mail sent to admin should be received by natasha
-
+	
 	yum install -y postfix*
 	vi /etc/postfix/main.cf
 	queue_directory = /var/spool/mail
