@@ -23,19 +23,15 @@ This will ultimately be a vagrant setup for SS to study for the RHCE
 - Natasha's mail should be spooled to /var/spool/mail/natasha
 - The server should accept mail remotely
 - All mail sent to admin should be received by natasha
-	
 	yum install -y postfix*
 	vi /etc/postfix/main.cf
 	queue_directory = /var/spool/mail
 	inet_address=all
 	myhostname=host.example.com
 	mydomain=example.com
-
 	/etc/init.d/postfix restart
 	chkconfig postfix on
-	
 	mail -v natasha@<ip> this is a test .
-
 	vi /etc/aliases
 	admin: natasha
 	newaliases
@@ -46,36 +42,33 @@ This will ultimately be a vagrant setup for SS to study for the RHCE
 - OP perl
 - Aurg perl
 - OP python
-	vim /root/script.sh
-	#!/bin/bash
-	if [ $# -ne 1 ]; then
-		echo "Invalid Aurgument"
-		exit 1
-	fi
-
-	case $1 in
-		python) echo "perl"
-		;;
-		perl) echo "python"
-		;;
-		*) echo "python|perl"
-		;;
-	esac
+		vim /root/script.sh
+		#!/bin/bash
+		if [ $# -ne 1 ]; then
+			echo "Invalid Aurgument"
+			exit 1
+		fi
+	
+		case $1 in
+			python) echo "perl"
+			;;
+			perl) echo "python"
+			;;
+			*) echo "python|perl"
+			;;
+		esac
 
 #Configure an FTP server such that
 - natasha can login via ftp 
 - anon enabled
 - users can download
 - access allowed from example.com and denied from bad.com
-
-	# yum -y install vsftpd*
-
-	# vi /etc/vsftpd/vsftpd.conf  (Verify for anonymous access/tcp wrappers)                  
+	yum -y install vsftpd*
+	vi /etc/vsftpd/vsftpd.conf  (Verify for anonymous access/tcp wrappers)                  
 	anonymous_enable=yes
 	local_enable=yes
 	no_anon_password=yes
 	tcp_wrapper_enable=yes	
-
 	vi /etc/hosts.deny
 	vsftpd: .bad.com
 	chkconfig vsftpd on
@@ -86,7 +79,6 @@ This will ultimately be a vagrant setup for SS to study for the RHCE
 
 #Set up an FTP server such that
 - /common is exported and only accessible by example.com
-
 	yum -y install nfs*
 	vi /etc/exports
 	/common *.example.com(rw,sync)
@@ -98,14 +90,12 @@ This will ultimately be a vagrant setup for SS to study for the RHCE
 	showmount -e
 
 #Mount the ISO /root/boot.iso to /disk this mount should be persistent across reboots.
-
 	vi /etc/fstab
 	/root/boot.iso /disk auto defaults,loop 0 0
 	mount -av
 	df -h
 
 #Setup an ssh server such that only users from example.com are allowed.
-
 	yum -y install openssh*
 	vi /etc/hosts.deny
 	sshd: ALL EXCEPT .example.com
@@ -152,8 +142,7 @@ This will ultimately be a vagrant setup for SS to study for the RHCE
 	ErrorLog logs/www11.example.com-error_log
 	CustomLog logs/www11.example.com-access_log common
 	</VirtualHost>
-
-	# /etc/init.d/httpd restart
+	/etc/init.d/httpd restart
 	httpd -t
 	restorecon -R /var/www/virtual/index.html
 	chcon -R --reference=/var/www/html /var/www/virtual
@@ -181,7 +170,6 @@ This will ultimately be a vagrant setup for SS to study for the RHCE
 - workgroup should be set to STAFF
 - The share /common should be accessible and browseable only from .example.com
 - password for harry is "password"
-
 	yum -y install samba*
 	vi /etc/samba/smb.conf
 	workgroup = STAFF
@@ -195,12 +183,10 @@ This will ultimately be a vagrant setup for SS to study for the RHCE
 	/etc/init./smb restart
 	chkconfig smb on
 	testparm
-
 	smbpasswd -a harry
 	pbedit -L
 	setsebool -P samba_enable_home_dirs on
 	chcon -t samba_share_t/common
-
 	smbclient //stationx.example.com -U harry
 
 #The user jean should not be allowed to add a cron job for himself
@@ -208,7 +194,6 @@ This will ultimately be a vagrant setup for SS to study for the RHCE
 	jean
 
 #Copy the file boot.iso to /var/www/html/secure. Secure the file and make it available to only local hosts over apache webserver
-
 	cp boot.iso /var/www/html/secure
 	vi /etc/httpd/conf/httpd.conf
 	/cgi-bin
