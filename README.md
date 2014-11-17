@@ -20,10 +20,9 @@ This will ultimately be a vagrant setup for SS to study for the RHCE
 	net.ipv4.ip_forward = 1
 
 #Set up a mail server w/ the following conditions
-- Natasha's mail should be spooled to /var/spool/mail/natasha
-- The server should accept mail remotely
-- All mail sent to admin should be received by natasha
-<!--End list-->
+## Natasha's mail should be spooled to /var/spool/mail/natasha
+## The server should accept mail remotely
+## All mail sent to admin should be received by natasha
 
 	yum install -y postfix*
 	vi /etc/postfix/main.cf
