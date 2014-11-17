@@ -23,14 +23,14 @@ This will ultimately be a vagrant setup for SS to study for the RHCE
 - Natasha's mail should be spooled to /var/spool/mail/natasha
 - The server should accept mail remotely
 - All mail sent to admin should be received by natasha
-Code
-	yum install -y postfix*
-	vi /etc/postfix/main.cf
-	queue_directory = /var/spool/mail
-	inet_address=all
-	myhostname=host.example.com
-	mydomain=example.com
-	/etc/init.d/postfix restart
+
+		yum install -y postfix*
+		vi /etc/postfix/main.cf
+		queue_directory = /var/spool/mail
+		inet_address=all
+		myhostname=host.example.com
+		mydomain=example.com
+		/etc/init.d/postfix restart
 	chkconfig postfix on
 	mail -v natasha@<ip> this is a test .
 	vi /etc/aliases
