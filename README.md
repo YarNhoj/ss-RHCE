@@ -20,9 +20,9 @@ This will ultimately be a vagrant setup for SS to study for the RHCE
 	net.ipv4.ip_forward = 1
 
 #Set up a mail server w/ the following conditions
--Natasha's mail should be spooled to /var/spool/mail/natasha
--The server should accept mail remotely
--All mail sent to admin should be received by natasha
+- Natasha's mail should be spooled to /var/spool/mail/natasha
+- The server should accept mail remotely
+- All mail sent to admin should be received by natasha
 
 	yum install -y postfix*
 	vi /etc/postfix/main.cf
@@ -42,10 +42,10 @@ This will ultimately be a vagrant setup for SS to study for the RHCE
 	mail -v admin@<ip> this ia a test .
 
 #Write a script in bash such that:
--Aurg python
--OP perl
--Aurg perl
--OP python
+- Aurg python
+- OP perl
+- Aurg perl
+- OP python
 	vim /root/script.sh
 	#!/bin/bash
 	if [ $# -ne 1 ]; then
@@ -63,10 +63,10 @@ This will ultimately be a vagrant setup for SS to study for the RHCE
 	esac
 
 #Configure an FTP server such that
--natasha can login via ftp 
--anon enabled
--users can download
--access allowed from example.com and denied from bad.com
+- natasha can login via ftp 
+- anon enabled
+- users can download
+- access allowed from example.com and denied from bad.com
 
 	# yum -y install vsftpd*
 
@@ -85,7 +85,7 @@ This will ultimately be a vagrant setup for SS to study for the RHCE
 	ftp as yourself to test
 
 #Set up an FTP server such that
--/common is exported and only accessible by example.com
+- /common is exported and only accessible by example.com
 
 	yum -y install nfs*
 	vi /etc/exports
@@ -114,10 +114,10 @@ This will ultimately be a vagrant setup for SS to study for the RHCE
 	netstat -antp | grep sshd
 
 #Create a website by your hostname ie "http://stationx.example.com"
--Copy station.html from server1.example.com/pub/
--Rename this as index.html
--Move it to the standard document root of apache
--Pre-res is provided by DNS
+- Copy station.html from server1.example.com/pub/
+- Rename this as index.html
+- Move it to the standard document root of apache
+- Pre-res is provided by DNS
 	yum -y install httpd*
 	vi /etc/httpd/conf/httpd.conf
 	ServerName stationx.example.com
@@ -138,9 +138,9 @@ This will ultimately be a vagrant setup for SS to study for the RHCE
 	browse from host
 
 #Extend your server to host virtual site wwwx.example.com
--Doc Root should be in /var/www/virtual
--copy from dir server1/pub/www.html as index.html
--Harry should be able to write contents to /var/www/virtual
+- Doc Root should be in /var/www/virtual
+- copy from dir server1/pub/www.html as index.html
+- Harry should be able to write contents to /var/www/virtual
 	mkdir /var/www/virtual
 	gftp www.html
 	mv www.html /var/www/virtual/index.html
@@ -162,8 +162,8 @@ This will ultimately be a vagrant setup for SS to study for the RHCE
 	browse to page
 
 #Import an ISCSI disk from the server server1.example.com such that
--the disk must be mounte as /mnt/iscsi
--this mount should be persistent	
+- the disk must be mounte as /mnt/iscsi
+- this mount should be persistent	
 	rpm -qa | grep iscsi
 	yum install isci-initiator-utils
 	iscsiadm -m discovery -t st -p server1.example.com
@@ -176,11 +176,11 @@ This will ultimately be a vagrant setup for SS to study for the RHCE
 	UUID=<uuid> /mnt/iscsi ext4 defaults,_netdev 0 0
 
 #Create a Samba share /common such that:
--Harry can only read the contents of /common
--harry can be asked for auth
--workgroup should be set to STAFF
--The share /common should be accessible and browseable only from .example.com
--password for harry is "password"
+- Harry can only read the contents of /common
+- harry can be asked for auth
+- workgroup should be set to STAFF
+- The share /common should be accessible and browseable only from .example.com
+- password for harry is "password"
 
 	yum -y install samba*
 	vi /etc/samba/smb.conf
