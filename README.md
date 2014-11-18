@@ -1,5 +1,15 @@
 This will ultimately be a vagrant setup for SS to study for the RHCE
 
+#TODO
+- DNS in Server.shadow-soft.com
+- No /etc/hosts in either system
+- ftp dir on master to host .iso, .html
+- Copy neccesary RPMS and share them out on the master
+- LDAP on master
+- Check scripts
+- This all needs to be automated through Vagrant
+
+
 #Set SELinux to enforcing mode
 	sestatus/getenforce
 	lokkit --selinux=enforcing
