@@ -12,6 +12,7 @@ This will ultimately be a vagrant setup for SS to study for the RHCE
 
 #Set SELinux to enforcing mode
 	sestatus/getenforce
+	#if set to disabled set to permissive and reboot
 	lokkit --selinux=enforcing
 	vi /etc/selinux/config
 	SELINUX=enforcing
@@ -28,6 +29,7 @@ This will ultimately be a vagrant setup for SS to study for the RHCE
 	vi /etc/sysctl.conf
 	# Controls IP packet forwarding
 	net.ipv4.ip_forward = 1
+	sysctl -p
 
 #Set up a mail server w/ the following conditions
 - Natasha's mail should be spooled to /var/spool/mail/natasha
@@ -37,6 +39,7 @@ This will ultimately be a vagrant setup for SS to study for the RHCE
 <!-- -->
 
 	yum install -y postfix*
+	service postfix stop
 	vi /etc/postfix/main.cf
 	queue_directory = /var/spool/mail
 	inet_address=all
