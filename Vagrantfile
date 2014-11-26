@@ -9,7 +9,7 @@ config.vm.box = "centos-65-x64-nocm"
 config.vm.box_url = "http://puppet-vagrant-boxes.puppetlabs.com/centos-65-x64-virtualbox-nocm.box"
 
 ## Server
-config.vm.define :Server do |s|
+config.vm.define :server do |s|
 
 s.vm.provider :virtualbox do |v|
 v.memory  = 1024
@@ -19,10 +19,6 @@ end
 s.vm.network :private_network,  ip: "10.10.100.100"
 s.vm.hostname = 'server.shadow-soft.com'
 s.vm.provision :hosts
-
-config.vm.provision "shell", 
-	inline: "service iptables stop"
-	end
 
 ## Client 
 	config.vm.define :client do |c|
@@ -35,4 +31,4 @@ config.vm.provision "shell",
 
 	end
 
-	end
+end
